@@ -22,7 +22,6 @@ formulaInput.addEventListener("keydown", function (e) {
     if (e.key == "Enter" && formulaInput.value != "") {
         // fomrula get
         let cFormula = formulaInput.value;
-        // address -> jispe formula jo value get wo set ho jaayegi 
         let addressOfTheCell = addressInput.value;
         let { rid, cid } = getRidCidFromAddress(addressOfTheCell);
         let cellObject = db[rid][cid];
@@ -69,7 +68,6 @@ function setUI(value, rid, cid) {
         setUI(value, chriciobj.rid, chriciobj.cid)
     }
 }
-//  to set a cell as children of a cell jispe depenedent 
 function setFormula(address, formula) {
     // ( A1 + A2 ) -> ( 10 + 20 )
     let formulaEntities = formula.split(" ");
@@ -82,26 +80,19 @@ function setFormula(address, formula) {
             // db -> value
             let children = db[parentrcObj.rid][parentrcObj.cid].children;
             children.push(address);
-            // replace in formula
 
         }
     }
 }
-//  to set a cell as children of a cell jispe depenedent 
 function removeFormula(address, formula) {
-    // ( A1 + A2 ) -> ( 10 + 20 )
     let formulaEntities = formula.split(" ");
-    // [(,A1,+,A2,)]
     for (let i = 0; i < formulaEntities.length; i++) {
         let ascii = formulaEntities[i].charCodeAt(0);
         if (ascii >= 65 && ascii <= 90) {
-            // address -> rid cId
             let parentrcObj = getRidCidFromAddress(formulaEntities[i]);
-            // db -> value
             let children = db[parentrcObj.rid][parentrcObj.cid].children;
             let idx = children.indexOf(address);
             children.splice(idx, 1);
-            // replace in formula
         }
     }
 }

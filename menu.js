@@ -92,7 +92,6 @@ italicIcon.addEventListener("click", function () {
     }
 })
 underlineIcon.addEventListener("click", function () {
-    // Ui se address get 
     let address = addressInput.value;
     let ridcidObj = getRidCidFromAddress(address);
     let tobeChangedCell = document.querySelector

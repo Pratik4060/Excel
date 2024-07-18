@@ -34,7 +34,6 @@ for (let i = 1; i <= 100; i++) {
     div.textContent = i;
     leftCol.appendChild(div)
 }
-// 2 d loop -> columns*rows
 
 for (let i = 0; i < 100; i++) {
     let row = document.createElement("div");
@@ -44,14 +43,12 @@ for (let i = 0; i < 100; i++) {
         div.setAttribute("class", "cell");
        
         div.setAttribute("contentEditable", "true")
-        //   every cell identification required 
         div.setAttribute("rId", i);
         div.setAttribute("cId", j);
         row.appendChild(div);
     }
     grid.appendChild(row)
 }
-// default value put for every cell
 let sheetsDb = [];
 function initDB() {
     let db = [];
@@ -158,11 +155,9 @@ function getRidCidFromAddress(address) {
 
 }
 firstSheet.addEventListener("click", function (e) {
-    //    list of sheet me se sabme se aap remove active sheet
     for (let i = 0; i < sheetList.children.length; i++) {
         sheetList.children[i].classList.remove("active-sheet")
     }
-    // given sheet add kar lo 
     firstSheet.classList.add("active-sheet");
     db = sheetsDb[0];
     setinitUI();
@@ -171,7 +166,6 @@ firstSheet.addEventListener("click", function (e) {
 createSheetIcon.addEventListener("click", sheetHandler);
 function sheetHandler() {
     let noofChildren = sheetList.children.length;
-    // dom se create 
     let newSheet = document.createElement("div");
     newSheet.setAttribute("class", "sheet");
     newSheet.setAttribute("sheetIdx", noofChildren);
